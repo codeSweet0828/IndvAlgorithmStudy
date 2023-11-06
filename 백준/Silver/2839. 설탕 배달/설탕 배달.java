@@ -1,37 +1,39 @@
 import java.util.Scanner;
-
 public class Main {
-
+	static int [] dp;
 	public static void main(String[] args) {
-		Main ma = new Main();
+		Main ma =new Main();
+		
 		Scanner sc = new Scanner(System.in);
-		
 		int num = sc.nextInt();
-		int data = ma.greedy(num);
-		System.out.println(data);
-	}
-
-	public int greedy(int num) {
-	   int orginalNum = num;
+		dp = new int[num+1];
 		
-	    int maxIndex = num/5 ;
-	    
-	    if(num %5 == 0)
-	    	return num/5;
-	    
-	    for(int i = maxIndex; i >0 ; i--) {
-	    	num = orginalNum;
-	    	
-	    	num = num - i*5;
-	    	
-	    	if(num %3 == 0)
-	    		return i + (num/3);
-	    }
-	    
-	    if(orginalNum %3 == 0)
-	    	return orginalNum/3;
-			
-		return -1;
+		if(num < 5) {
+	
+		}
+		ma.Deepy(num);
 	}
-
+	public void Deepy(int num) {
+		if(num >=3 )
+			 dp[3] = 1;
+		if(num >=5) {
+			dp[5] = 1;
+		    for(int i=6; i<dp.length; i++) {
+		       if(i % 5 == 0) {
+		        	dp[i] = dp[i-5]+1;
+		       }else if(i % 3 == 0) {
+		        	dp[i] = dp[i-3]+1;
+		       }else {
+					if (dp[i - 3] != 0 && dp[i - 5] != 0) {
+						dp[i] = Math.min(dp[i - 3], dp[i - 5]) + 1;
+					}
+				}
+		    }
+		}
+		if(dp[num] == 0) {
+			System.out.print(-1);
+		}else {
+			System.out.print(dp[num]);
+		}
+	}
 }
