@@ -39,7 +39,7 @@ public class Main {
 		int endTime =  0;
 		for(int i =0 ; i < arr.length ; i++){
 			if((arr[i][1] == endTime && (endTime-startTime)>(arr[i][1] -arr[i][0]))
-				||(arr[i][1] < endTime) ) {
+				 ) {
 				endTime = arr[i][1];
 				startTime = arr[i][0];		
 			}
@@ -52,6 +52,7 @@ public class Main {
 				
 		}
 		return cnt;
+		
 		
 	}
 	
