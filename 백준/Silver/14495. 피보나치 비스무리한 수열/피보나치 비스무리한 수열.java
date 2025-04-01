@@ -3,17 +3,24 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(bf.readLine());
 
-        long[] dp = new long[117];  
-        dp[1] = dp[2] = dp[3] = 1;
-
-        for (int i = 4; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 3];
-        }
-
-        System.out.println(dp[n]); 
-    }
+	static long[] arr;
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		
+		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		
+		int num = Integer.parseInt(bf.readLine());
+		arr = new long[117];
+		
+		arr[1] = 1;
+		arr[2] = 1;
+		arr[3] = 1;
+		
+		for(int i = 4 ; i < num+1 ; i++) {
+			arr[i] = arr[i-1]+ arr[i-3];
+		}
+			
+		System.out.println(arr[num]);
+	}
+	
 }
